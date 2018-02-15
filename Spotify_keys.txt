@@ -1,0 +1,5 @@
+client ID 442f0ca7c66e4fdcabd7dc0eea9dde45
+client Secret ec5c5e0ae2414553aeb26133941c8e90
+
+
+http://www.omdbapi.com/?i=tt3896198&apikey=8682134c
