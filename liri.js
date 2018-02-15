@@ -2,7 +2,6 @@
 	var fs = require("fs"); //Files are read and written by FS
 	var request = require("request");
 	var keys = require("./keys.js");
-	var omdb = require('omdb');
 	var twitter = require("twitter");
 	var Spotify = require ("node-spotify-api");
 	var liriArgument = process.argv[2];
@@ -34,14 +33,14 @@
 		if(!movie){
 			movie = "Mr. Nobody";
 		}
-		params = movie
-		request("http://www.omdbapi.com/?i=tt3896198&apikey=8682134c") + params + "&y=&plot=short&r=json&tomatoes=true", function (error, response, body) {
+			params = movie
+		request("http://www.omdbapi.com/?t=" + params + "&y=&plot=short&r=json&tomatoes=true", function (error, response, body) {
 			if (!error && response.statusCode == 200) {
 				var movieObject = JSON.parse(body);
-				console.log(movieObject); // Show the text in the terminal
+				//console.log(movieObject); // Show the text in the terminal
 				var movieResults =
-				//"------------------------------ begin ------------------------------" + "\r\n"
-				"Title: " + movieObject.Title+"\r\n"+
+				"------------------------------ begin ------------------------------" + "\r\n"
+			   "Title: " + movieObject.Title+"\r\n"+
                "Year: " + movieObject.Year+"\r\n"+
                "Imdb Rating: " + movieObject.imdbRating+"\r\n"+
                "Country: " + movieObject.Country+"\r\n"+
@@ -50,14 +49,14 @@
                "Actors: " + movieObject.Actors+"\r\n"+
                "Rotten Tomatoes Rating: " + movieObject.tomatoRating+"\r\n"+
                "Rotten Tomatoes URL: " + movieObject.tomatoURL + "\r\n" +
-               //"------------------------------ fin ------------------------------" + "\r\n";
+               "------------------------------ fin ------------------------------" + "\r\n";
 				console.log(movieResults);
 				log(movieResults); // calling log function
 			} else {
 				console.log("Error :"+ error);
 				return;
 			}
-		}
+		});
 	};
 	// Tweet function, uses the Twitter module to call the Twitter api
 	function myTweets() {
@@ -137,6 +136,6 @@
 	  fs.appendFile("log.txt", logResults, (error) => {
 	    if(error) {
 	      throw error;
-	    }
+	        }
 	  });
 	}
