@@ -34,12 +34,11 @@
 			movie = "Mr. Nobody";
 		}
 			params = movie
-		request("http://www.omdbapi.com/?t=" + params + "&y=&plot=short&r=json&tomatoes=true", function (error, response, body) {
+request("http://www.omdbapi.com/?t=" + params + "&y=&plot=short&apikey=40e9cece", function(error, response, body) {
 			if (!error && response.statusCode == 200) {
 				var movieObject = JSON.parse(body);
-				//console.log(movieObject); // Show the text in the terminal
+			//	console.log(movieObject); // Show the text in the terminal
 				var movieResults =
-				"------------------------------ begin ------------------------------" + "\r\n"
 			   "Title: " + movieObject.Title+"\r\n"+
                "Year: " + movieObject.Year+"\r\n"+
                "Imdb Rating: " + movieObject.imdbRating+"\r\n"+
@@ -48,9 +47,8 @@
                "Plot: " + movieObject.Plot+"\r\n"+
                "Actors: " + movieObject.Actors+"\r\n"+
                "Rotten Tomatoes Rating: " + movieObject.tomatoRating+"\r\n"+
-               "Rotten Tomatoes URL: " + movieObject.tomatoURL + "\r\n" +
-               "------------------------------ fin ------------------------------" + "\r\n";
-				console.log(movieResults);
+               "Rotten Tomatoes URL: " + movieObject.tomatoURL + "\r\n" ;
+				console.log('movieeresults', movieResults);
 				log(movieResults); // calling log function
 			} else {
 				console.log("Error :"+ error);
@@ -70,7 +68,7 @@
 		});
 		var twitterUsername = process.argv[3];
 		if(!twitterUsername){
-			twitterUsername = "mxtx";
+			twitterUsername = "mrchuckd";
 		}
 		params = {screen_name: twitterUsername};
 		client.get("statuses/user_timeline/", params, function(error, data, response){
